@@ -1,5 +1,6 @@
 import Build_gradle.Versions.kotest
 import Build_gradle.Versions.kotestSpring
+import Build_gradle.Versions.mockk
 
 group = "sample.kotest"
 version = "0.0.1-SNAPSHOT"
@@ -8,6 +9,7 @@ object Versions {
   const val kotest = "5.5.5"
   const val kotestSpring = "1.1.2"
   const val jvm = "17"
+  const val mockk = "1.13.4"
 }
 
 plugins {
@@ -29,6 +31,7 @@ dependencies {
   testImplementation("io.kotest:kotest-extensions-junitxml")
   testImplementation("io.kotest:kotest-framework-datatest")
   testImplementation("io.kotest.extensions:kotest-extensions-spring:$kotestSpring")
+  testImplementation("io.mockk:mockk:$mockk")
 }
 
 tasks.test {

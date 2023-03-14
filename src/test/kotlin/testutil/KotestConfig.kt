@@ -13,4 +13,5 @@ class KotestConfig: AbstractProjectConfig() {
     JunitXmlReporter(),
     HtmlReporter()
   )
+//  override val failOnEmptyTestSuite = true
 }

@@ -3,7 +3,6 @@ package samples
 //import io.kotest.core.annotation.Ignored
 //import io.kotest.core.annotation.Tags
 import io.kotest.assertions.throwables.shouldThrow
-import io.kotest.assertions.timing.eventually
 import io.kotest.core.Tag
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.datatest.withData
@@ -13,8 +12,6 @@ import io.kotest.matchers.shouldNotBe
 import io.kotest.matchers.string.startWith
 import io.kotest.mpp.env
 import java.lang.IllegalStateException
-import java.time.Instant
-import kotlin.time.Duration.Companion.seconds
 
 //@Ignored
 //@Tags("LongRunningTest")
@@ -35,25 +32,13 @@ class FreeSpecSample : FreeSpec({
     }
   }
 
-  "exceptions" {
-    shouldThrow<IllegalStateException> {
-      throw IllegalStateException("boom")
-    }.message should startWith("boom")
-  }
-
   "ignored test".config(enabledIf = { env("somevalue") != null }) {
     1 shouldBe 2
   }
 
-  "non-deterministic test".config(tags = setOf(LongRunningTest)) { // also retry/until
-    eventually(duration = 1.seconds) {
-      Instant.now().nano.also {
-        it % 10 shouldBe 0
-      }
-    }.also { println("Res: $it") }
-  }
 
-  "test creation" - {
+
+  "test creation".config(tags = setOf(MyIntegrationTest)) - {
     (1..3).forEach {
       "test $it" { it % 2 shouldNotBe 0 }
     }
@@ -78,4 +63,4 @@ class FreeSpecSample : FreeSpec({
   beforeSpec { println("Hello ${it.rootTests().first().name.testName}") } // beforeContainer,beforeTest,..
 })
 
-object LongRunningTest : Tag()
+object MyIntegrationTest : Tag()
