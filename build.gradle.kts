@@ -30,6 +30,7 @@ dependencies {
   testImplementation("io.kotest:kotest-extensions-htmlreporter")
   testImplementation("io.kotest:kotest-extensions-junitxml")
   testImplementation("io.kotest:kotest-framework-datatest")
+  testImplementation("io.kotest:kotest-property")
   testImplementation("io.kotest.extensions:kotest-extensions-spring:$kotestSpring")
   testImplementation("io.mockk:mockk:$mockk")
 }

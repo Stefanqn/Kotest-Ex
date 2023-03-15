@@ -11,20 +11,17 @@ import io.kotest.common.ExperimentalKotest
 import io.kotest.core.Tag
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.framework.concurrency.until
+import io.kotest.matchers.*
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.comparables.shouldBeLessThanOrEqualTo
-import io.kotest.matchers.maps.containAll
-import io.kotest.matchers.maps.shouldContainKey
-import io.kotest.matchers.maps.shouldContainValue
 import io.kotest.matchers.maps.shouldContainValues
 import io.kotest.matchers.nulls.shouldBeNull
+import io.kotest.matchers.reflection.compose
 import io.kotest.matchers.should
-import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.*
 import io.kotest.matchers.types.shouldBeInstanceOf
-import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -121,6 +118,35 @@ class FreeSpecAssertions : FreeSpec({
       }
     }
   }
+
+  "matchers" - {
+    class Person(
+      val name: String,
+      val age: Int,
+    )
+    val john = Person("John", 21)
+
+    val ofDrinkingAge = Matcher<Int> { value ->
+      val drinkingAge = 18
+      MatcherResult(
+        value >= drinkingAge,
+        { "$value should be >= $drinkingAge for drinking legally" },
+        { "$value should be < $drinkingAge for not drinking legally" }
+      )
+    }
+    "custom" {
+      "123" shouldNotBe ofDrinkingAge
+    }
+
+    "compose class" {
+      fun theBarCustomer(name: String) = Matcher.compose(
+        be(name) to Person::name,
+        ofDrinkingAge to Person::age
+      )
+      john shouldNotBe theBarCustomer("John")
+    }
+  }
+
 
   "grouping tests" - {
     "should run on Windows".config(tags = setOf(Windows)) {}
