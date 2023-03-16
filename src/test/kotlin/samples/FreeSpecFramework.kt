@@ -16,7 +16,7 @@ import java.lang.IllegalStateException
 //@Ignored
 //@Tags("LongRunningTest")
 class FreeSpecSample : FreeSpec({
-  "String.length" - {
+  "nested tests, e.g. String.length" - {
     "should return the length of the string" {
       "sammy".length shouldBe 5
       "".length shouldBe 0
