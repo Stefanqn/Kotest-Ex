@@ -21,7 +21,6 @@ plugins {
 
 dependencies {
   implementation("org.springframework.boot:spring-boot-starter-web")
-//  implementation("org.jetbrains.kotlin:kotlin-reflect")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation(kotlin("test"))
 
@@ -42,6 +41,11 @@ tasks.test {
     html.required.set(false)
   }
   systemProperty("gradle.build.dir", project.buildDir)
+
+//  testLogging {
+//    showStandardStreams = true
+//  }
+//  systemProperty("kotest.framework.dump.config", "true")
 }
 
 tasks.compileKotlin {
