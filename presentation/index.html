@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>reveal.js</title>
+
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/black.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+    <section data-markdown>
+  <textarea data-template>
+    ## ![Kotest](kotestLogo.png)
+    * test framework (multi-platform)
+    * assertions library
+    * integrated property testing
+    * IntelliJ Plugin
+    ---
+    ## Test Framework
+    * nested [Testing Styles](https://kotest.io/docs/framework/testing-styles.html): <em>`AnnotationSpec`</em>
+    * Isolation Modes
+    * [Extensions](https://kotest.io/docs/extensions/extensions.html), e.g.
+      - TestContainer
+      - Spring
+      - JUnit XML Reporter
+    * Coroutines
+    * annotation-less test configuration
+    * TestContext:  <em>`testCase.description.name`</em>
+    ---
+    ## Assertions
+    * can be used independently
+    * Matchers
+      - combinable
+      - modules: JSON,Android,Compiler
+      - mostly documented
+    * soft assertions
+    * Non-deterministic Testing
+    ---
+    ## Property-based Testing
+    * vs example-based tests
+    * generate inputs & validate property
+    * Seeds: <ins>deterministic</ins> input generation
+    * Shrinking
+    * Reflective Generators (`Arbs`)
+    ---
+    ## Cons
+    * not default
+    * matcher syntax consistency
+    * Intellij Runner Plugin doesn't include .env plugin
+    * Running individual nested tests
+  </textarea>
+    </section>
+  </div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+  // More info about initialization & config:
+  // - https://revealjs.com/initialization/
+  // - https://revealjs.com/config/
+  Reveal.initialize({
+    hash: true,
+
+    // Learn about plugins: https://revealjs.com/plugins/
+    plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+  });
+</script>
+</body>
+</html>
