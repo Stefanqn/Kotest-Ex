@@ -22,6 +22,7 @@ import io.kotest.matchers.reflection.compose
 import io.kotest.matchers.should
 import io.kotest.matchers.string.*
 import io.kotest.matchers.types.shouldBeInstanceOf
+import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -68,9 +69,9 @@ class FreeSpecAssertions : FreeSpec({
   }
 
   "clues" - {
-    val ex = listOf(1, 2)
+    val ex = listOf(3, 5)
     "without" {
-      ex.isEmpty() shouldBe true
+      ex.shouldBeEmpty()
     }
     "with" {
       withClue("List content: $ex") { ex.isEmpty() shouldBe true }
@@ -135,7 +136,7 @@ class FreeSpecAssertions : FreeSpec({
       )
     }
     "custom" {
-      "123" shouldNotBe ofDrinkingAge
+      123 shouldNotBe ofDrinkingAge
     }
 
     "compose class" {
@@ -169,9 +170,9 @@ class FreeSpecAssertions : FreeSpec({
       ex.isEmpty() shouldBe false
     }
   }
+//  afterTest { clearAllMocks() }
 }
 
-//  afterTest { clearAllMocks() }
 )
 
 object Linux : Tag()
