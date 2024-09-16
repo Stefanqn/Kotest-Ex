@@ -6,16 +6,16 @@ group = "sample.kotest"
 version = "0.0.1-SNAPSHOT"
 
 object Versions {
-  const val kotest = "5.5.5"
-  const val kotestSpring = "1.1.2"
+  const val kotest = "5.9.1"
+  const val kotestSpring = "1.3.0" //for kotest 5.8
   const val jvm = "17"
-  const val mockk = "1.13.4"
+  const val mockk = "1.13.12"
 }
 
 plugins {
-  id("org.springframework.boot") version "3.0.3" //  package executable jars , run Spring Boot apps, dep management by spring-boot-dependencies
-  kotlin("jvm") version "1.8.10" // gradle check doesn't like vals (object Versions) here
-  kotlin("plugin.spring") version "1.8.10" // opens classes and methods with Spring annotations
+  id("org.springframework.boot") version "3.3.3" //  package executable jars , run Spring Boot apps, dep management by spring-boot-dependencies
+  kotlin("jvm") version "2.0.20" // gradle check doesn't like vals (object Versions) here
+  kotlin("plugin.spring") version "2.0.20" // opens classes and methods with Spring annotations
 //  application // Application plugin.
 }
 
