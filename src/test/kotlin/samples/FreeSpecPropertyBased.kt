@@ -2,6 +2,7 @@ package samples
 
 
 import io.kotest.assertions.withClue
+import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.kotest.matchers.shouldNot
@@ -16,6 +17,7 @@ import java.math.MathContext
 import java.net.URI
 import java.time.Instant
 
+@OptIn(ExperimentalKotest::class)
 class FreeSpecPropertyBased : FreeSpec({
   "String size" - {
     "forall" {

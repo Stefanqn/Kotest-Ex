@@ -1,15 +1,19 @@
-import Build_gradle.Versions.kotest
-import Build_gradle.Versions.kotestSpring
-import Build_gradle.Versions.mockk
+import Build_gradle.Versions.V_KOTEST
+import Build_gradle.Versions.V_KOTEST_SPRING
+import Build_gradle.Versions.V_KOTEST_COMPILE
+import Build_gradle.Versions.V_MOCKK
+import Build_gradle.Versions.V_KOTLIN_COMPILE_TESTING
 
 group = "sample.kotest"
 version = "0.0.1-SNAPSHOT"
 
 object Versions {
-  const val kotest = "5.9.1"
-  const val kotestSpring = "1.3.0" //for kotest 5.8
-  const val jvm = "17"
-  const val mockk = "1.13.12"
+  const val V_KOTEST = "5.9.1"
+  const val V_KOTEST_SPRING = "1.3.0" //for kotest 5.8
+  const val V_KOTEST_COMPILE = "1.0.0"
+  const val V_KOTLIN_COMPILE_TESTING = "1.6.0"
+  const val V_JVM = "17"
+  const val V_MOCKK = "1.13.12"
 }
 
 plugins {
@@ -24,23 +28,25 @@ dependencies {
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation(kotlin("test"))
 
-  testImplementation(platform("io.kotest:kotest-bom:$kotest"))
+  testImplementation(platform("io.kotest:kotest-bom:$V_KOTEST"))
   testImplementation("io.kotest:kotest-runner-junit5")
   testImplementation("io.kotest:kotest-extensions-htmlreporter")
   testImplementation("io.kotest:kotest-extensions-junitxml")
   testImplementation("io.kotest:kotest-framework-datatest")
   testImplementation("io.kotest:kotest-property")
-  testImplementation("io.kotest.extensions:kotest-extensions-spring:$kotestSpring")
-  testImplementation("io.mockk:mockk:$mockk")
+  testImplementation("io.kotest.extensions:kotest-extensions-spring:$V_KOTEST_SPRING")
+  testImplementation("io.mockk:mockk:$V_MOCKK")
+//  testImplementation("io.kotest.extensions:kotest-assertions-compiler:$V_KOTEST_COMPILE")
+//  testImplementation("com.github.tschuchortdev:kotlin-compile-testing:$V_KOTLIN_COMPILE_TESTING")
 }
 
 tasks.test {
   useJUnitPlatform()
   reports {
-    junitXml.required.set(false)
+    junitXml.required.set(false) // no gradle default JUnit XML reports
     html.required.set(false)
   }
-  systemProperty("gradle.build.dir", project.buildDir)
+  systemProperty("gradle.build.dir", project.layout.buildDirectory)
 
 //  testLogging {
 //    showStandardStreams = true
@@ -51,7 +57,7 @@ tasks.test {
 tasks.compileKotlin {
   kotlinOptions {
     freeCompilerArgs = listOf("-Xjsr305=strict") // harder null safety checks with Java annotations
-    jvmTarget = Versions.jvm
+    jvmTarget = Versions.V_JVM
   }
 }
 java.sourceCompatibility = JavaVersion.VERSION_17

@@ -1,8 +1,12 @@
 .front-pic {
-  transform: scale(1.5);
+  transform: scale(1.1);
   /*width: 1px;*/
   /*height: auto*/
 }
+
+/*section.present h2 {*/
+/*  font-size: 125%;*/
+/*}*/
 
 .highlight {
   color: yellow;
@@ -57,4 +61,8 @@
 
 .styled-table  td:first-child {
   border-left: none; /* Remove left border for the first column */
+}
+
+.v-mid {
+  vertical-align: middle;
 }

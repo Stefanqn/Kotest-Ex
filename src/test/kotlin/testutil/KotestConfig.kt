@@ -11,7 +11,7 @@ class KotestConfig: AbstractProjectConfig() {
   override fun extensions(): List<Extension> = listOf(
     SpringExtension, // before/after callbacks, constructor injection, TestContext(Manager)
     JunitXmlReporter(),
-    HtmlReporter()
+    HtmlReporter() // depends on JunitXmlReporter
   )
 //  override val failOnEmptyTestSuite = true
 }

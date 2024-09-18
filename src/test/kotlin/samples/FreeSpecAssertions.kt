@@ -5,20 +5,22 @@ import app.HomeController
 import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.retry
 import io.kotest.assertions.throwables.shouldThrow
-import io.kotest.assertions.timing.eventually
+import io.kotest.assertions.nondeterministic.eventually
 import io.kotest.assertions.withClue
 import io.kotest.common.ExperimentalKotest
 import io.kotest.core.Tag
 import io.kotest.core.spec.style.FreeSpec
-import io.kotest.framework.concurrency.until
+import io.kotest.assertions.nondeterministic.until
 import io.kotest.matchers.*
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.comparables.shouldBeLessThanOrEqualTo
+import io.kotest.matchers.compose.all
 import io.kotest.matchers.maps.shouldContainValues
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.reflection.compose
+import io.kotest.matchers.reflection.havingProperty
 import io.kotest.matchers.should
 import io.kotest.matchers.string.*
 import io.kotest.matchers.types.shouldBeInstanceOf
@@ -140,9 +142,9 @@ class FreeSpecAssertions : FreeSpec({
     }
 
     "compose class" {
-      fun theBarCustomer(name: String) = Matcher.compose(
-        be(name) to Person::name,
-        ofDrinkingAge to Person::age
+      fun theBarCustomer(name: String) = Matcher.all(
+        havingProperty(be(name) to Person::name),
+        havingProperty(ofDrinkingAge to Person::age)
       )
       john shouldNotBe theBarCustomer("John")
     }
