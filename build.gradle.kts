@@ -3,6 +3,8 @@ import Build_gradle.Versions.V_KOTEST_SPRING
 import Build_gradle.Versions.V_KOTEST_COMPILE
 import Build_gradle.Versions.V_MOCKK
 import Build_gradle.Versions.V_KOTLIN_COMPILE_TESTING
+import Build_gradle.Versions.V_FAKER_VERSION
+import Build_gradle.Versions.V_FAKER_EXT_VERSION
 
 group = "sample.kotest"
 version = "0.0.1-SNAPSHOT"
@@ -14,6 +16,8 @@ object Versions {
   const val V_KOTLIN_COMPILE_TESTING = "1.6.0"
   const val V_JVM = "17"
   const val V_MOCKK = "1.13.12"
+  const val V_FAKER_VERSION = "2.0.0-rc.6"
+  const val V_FAKER_EXT_VERSION = "2.0.0-rc.2"
 }
 
 plugins {
@@ -36,6 +40,10 @@ dependencies {
   testImplementation("io.kotest:kotest-property")
   testImplementation("io.kotest.extensions:kotest-extensions-spring:$V_KOTEST_SPRING")
   testImplementation("io.mockk:mockk:$V_MOCKK")
+
+//  testImplementation("io.github.serpro69:kotlin-faker:$V_FAKER_VERSION") // afaik lacks seed: determinism & shrinking
+//  testImplementation("io.github.serpro69:kotlin-faker-kotest-property:$V_FAKER_EXT_VERSION")
+
 //  testImplementation("io.kotest.extensions:kotest-assertions-compiler:$V_KOTEST_COMPILE")
 //  testImplementation("com.github.tschuchortdev:kotlin-compile-testing:$V_KOTLIN_COMPILE_TESTING")
 }

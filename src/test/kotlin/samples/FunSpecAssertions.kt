@@ -12,8 +12,6 @@ import io.kotest.matchers.maps.*
 import io.kotest.matchers.nulls.*
 import io.kotest.matchers.*
 import io.kotest.matchers.comparables.*
-import io.kotest.matchers.compilation.shouldCompile
-import io.kotest.matchers.compilation.shouldNotCompile
 import io.kotest.matchers.compose.all
 import io.kotest.matchers.reflection.havingProperty
 import io.kotest.matchers.string.*
