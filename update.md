@@ -1,6 +1,6 @@
 * [power assert](https://kotlinlang.org/docs/whatsnew20.html#experimental-kotlin-power-assert-compiler-plugin)
 ```build.gradle
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi<
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 plugins {
    id("kotlin-conventions")
@@ -30,7 +30,6 @@ powerAssert {
 ":kotest-tests:kotest-tests-power-assert",
 ```
 
-* version updates
-* design
-* java examples
+* power assert
+* java  data driven object examples
 * [block hound example](https://github.com/kotest/kotest/commit/d78edd2f0f85d32132e0ca8e64abf6b489e2db30)
