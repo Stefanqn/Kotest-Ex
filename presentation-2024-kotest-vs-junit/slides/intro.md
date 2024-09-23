@@ -1,4 +1,9 @@
-## Kotest for JUnit Developers
+## ![Kotest](../img/kotestLogo.png) 
+
+[//]: # (for ![JUnit]&#40;../img/junit.png&#41;<!-- data-background-opacity: 1 .element: style="transform: scale&#40;0.1&#41;" --> Developers)
+
+---
+## Agenda
 * relate Kotest to JUnit
 * Kotest Test Framework
 * Kotest Matchers

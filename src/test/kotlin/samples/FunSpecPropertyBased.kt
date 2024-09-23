@@ -1,6 +1,5 @@
 package samples
 
-import io.github.serpro69.kfaker.Faker
 import io.kotest.assertions.withClue
 import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.style.FunSpec
@@ -57,7 +56,7 @@ class FunSpecPropertyBased : FunSpec() {
         }
       }
       test("bump discard %") {
-        checkAll<Int, Int>(PropTestConfig(maxDiscardPercentage = 55)) { a, b -> // default 10%
+        checkAll<Int, Int>(PropTestConfig(maxDiscardPercentage = 55)) { a, b -> // default 20%
           assume(a + b > 0)
           a + b shouldBeGreaterThan 0
         }
